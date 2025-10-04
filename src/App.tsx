@@ -14,6 +14,7 @@ import SadEffect2 from './components/SadEffect2';
 import AngryEffect2 from './components/AngryEffect2';
 import NormalEffect2 from './components/NormalEffect2';
 import BabyEffect from './components/BabyEffect';
+import JoyBubbleEffect from './components/JoyBubbleEffect';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,6 +33,7 @@ function App() {
   const [isAngryEffect2Active, setIsAngryEffect2Active] = useState(false);
   const [isNormalEffect2Active, setIsNormalEffect2Active] = useState(false);
   const [isBabyEffectActive, setIsBabyEffectActive] = useState(false);
+  const [isJoyBubbleActive, setIsJoyBubbleActive] = useState(false);
   const [flashCount, setFlashCount] = useState(0);
   const [rainIntensity, setRainIntensity] = useState<
     'light' | 'medium' | 'heavy'
@@ -87,15 +89,27 @@ function App() {
               onClick={() => {
                 const shouldActivate = !isGoodMarkActive;
                 if (shouldActivate) {
-                  // ランダムにどちらかを選択
-                  const useMainEffect = Math.random() > 0.5;
-                  setIsGoodMarkActive(useMainEffect);
-                  setIsHappyEffect2Active(!useMainEffect);
+                  // ランダムに3つのエフェクトから1つを選択
+                  const random = Math.random();
+                  if (random < 0.33) {
+                    setIsGoodMarkActive(true);
+                    setIsHappyEffect2Active(false);
+                    setIsJoyBubbleActive(false);
+                  } else if (random < 0.66) {
+                    setIsGoodMarkActive(false);
+                    setIsHappyEffect2Active(true);
+                    setIsJoyBubbleActive(false);
+                  } else {
+                    setIsGoodMarkActive(false);
+                    setIsHappyEffect2Active(false);
+                    setIsJoyBubbleActive(true);
+                  }
                   setIsRandomEmotionActive(true);
                   setCurrentEmotion('happy');
                 } else {
                   setIsGoodMarkActive(false);
                   setIsHappyEffect2Active(false);
+                  setIsJoyBubbleActive(false);
                   setIsRandomEmotionActive(false);
                 }
                 // 他のエフェクトを停止
@@ -483,6 +497,10 @@ function App() {
       {/* 追加エフェクト2 */}
       <HappyEffect2
         isActive={isHappyEffect2Active}
+        intensity={sakuraIntensity}
+      />
+      <JoyBubbleEffect
+        isActive={isJoyBubbleActive}
         intensity={sakuraIntensity}
       />
       <JoyfulEffect2
