@@ -1,3 +1,5 @@
+import Rain from "../components/Rain";
+
 function Chat() {
   return (
     <div className="m-0 font-sans">
@@ -22,6 +24,7 @@ function Chat() {
         >
           感情を分析する
         </button>
+        <Rain/>
 
         <div id="result" className="mt-8 py-4 px-8 rounded-lg bg-white/70 shadow-md hidden"></div>
       </div>
