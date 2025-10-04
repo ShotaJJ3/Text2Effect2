@@ -1,73 +1,130 @@
-# React + TypeScript + Vite
+# Text2Effect - AWS 感情分析エフェクトアプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AWS Comprehend を使用してテキストの感情を分析し、結果に応じてリアルタイムエフェクトを表示する React アプリケーションです。
 
-Currently, two official plugins are available:
+## 機能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 感情分析
 
-## React Compiler
+- AWS Comprehend を使用した日本語テキストの感情分析
+- ポジティブ、ネガティブ、ニュートラル、混合の 4 つの感情を検出
+- 各感情の信頼度スコアを表示
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### エフェクト表示
 
-## Expanding the ESLint configuration
+感情分析の結果に応じて以下のエフェクトが表示されます：
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **ポジティブ** → 楽しいエフェクト（キャラクター、ハッピーコンフェッティ）
+- **ネガティブ** → 悲しいエフェクト（雨、雪）
+- **混合** → 怒りのエフェクト（雷、火山噴火）
+- **ニュートラル** → 普通のエフェクト（静かな粒子）
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## セットアップ
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. 依存関係のインストール
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. AWS 認証情報の設定
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+プロジェクトルートに`.env`ファイルを作成し、以下の内容を追加：
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_AWS_ACCESS_KEY_ID=your_access_key_here
+VITE_AWS_SECRET_ACCESS_KEY=your_secret_key_here
+VITE_AWS_REGION=ap-northeast-1
 ```
+
+### 3. AWS IAM ユーザーの設定
+
+AWS Comprehend を使用するための IAM ユーザーを作成し、以下のポリシーを付与：
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "comprehend:DetectSentiment",
+        "comprehend:DetectDominantLanguage"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+### 4. アプリケーションの起動
+
+```bash
+npm run dev
+```
+
+## 使用方法
+
+1. テキスト入力欄に感情を分析したい日本語テキストを入力
+2. 「感情を分析」ボタンをクリック
+3. AWS Comprehend がテキストの感情を分析
+4. 分析結果に応じて自動的にエフェクトが表示される
+
+## 使用技術
+
+- **フロントエンド**: React + TypeScript + Tailwind CSS
+- **感情分析**: AWS Comprehend
+- **アニメーション**: CSS Animations + React Hooks
+- **ビルドツール**: Vite
+
+## ファイル構成
+
+```
+src/
+├── components/           # Reactコンポーネント
+│   ├── SentimentInput.tsx    # 感情分析入力UI
+│   ├── LightningEffect.tsx   # 雷エフェクト
+│   ├── RainEffect.tsx        # 雨エフェクト
+│   ├── SakuraEffect.tsx      # 桜エフェクト
+│   ├── GoodMarkEffect.tsx    # キャラクターエフェクト
+│   ├── NormalMoodEffect.tsx  # 普通気持ちエフェクト
+│   └── ...
+├── services/            # 外部サービス連携
+│   └── sentimentAnalysis.ts  # AWS Comprehend API
+└── App.tsx             # メインアプリケーション
+```
+
+## AWS 料金について
+
+AWS Comprehend の料金は以下の通りです（2024 年時点）：
+
+- **感情分析**: 1,000 文字あたり $0.0001（約 0.015 円）
+- **無料利用枠**: 月間 50,000 文字まで無料
+
+詳細は[AWS Comprehend 料金](https://aws.amazon.com/comprehend/pricing/)を確認してください。
+
+## トラブルシューティング
+
+### よくある問題
+
+1. **「感情分析に失敗しました」エラー**
+
+   - AWS 認証情報が正しく設定されているか確認
+   - IAM ユーザーに Comprehend の権限があるか確認
+
+2. **ネットワークエラー**
+
+   - インターネット接続を確認
+   - AWS リージョン設定を確認
+
+3. **テキストが分析されない**
+   - 日本語テキストであることを確認
+   - テキストが空でないことを確認
+
+## ライセンス
+
+MIT License
+
+## 貢献
+
+プルリクエストやイシューの報告を歓迎します。
