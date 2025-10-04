@@ -17,12 +17,13 @@ function Chat() {
         <button
           id="analyze-button"
           className="m-3 py-3 px-8 text-base font-bold border-0 rounded-lg bg-[#007bff] text-white cursor-pointer transition-colors duration-300
-        hover:border-2 hover:border-[#007bff] hover:text-[#007bff] hover:bg-white"
+        hover:border-2 hover:border-[#007bff] hover:text-[#007bff] hover:bg-white
+        disabled:bg-[#aaa] disabled:cursor-not-allowed"
         >
           感情を分析する
         </button>
 
-        <div id="result" className="result"></div>
+        <div id="result" className="mt-8 py-4 px-8 rounded-lg bg-white/70 shadow-md hidden"></div>
       </div>
     </div>
   );
@@ -30,27 +31,6 @@ function Chat() {
 
 export default Chat;
 
-// button:hover {
-//     border: 2px solid;
-//     border-color: #007bff;
-//     color: #007bff;
-//     background-color: white;
-// }
-
-// button:disabled {
-//     background-color: #aaa;
-//     cursor: not-allowed;
-// }
-
-// .result {
-//     margin-top: 2rem;
-//     padding: 1rem 2rem;
-//     border-radius: 8px;
-//     background-color: rgba(255, 255, 255, 0.7);
-//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-//     /* 最初は非表示にしておく */
-//     display: none;
-// }
 
 // /* --- エフェクト部分 --- */
 // .container.effect-positive {
