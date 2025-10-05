@@ -64,6 +64,13 @@ function Chat() {
           onChange={(e) => setWord(e.target.value)}
           rows={5}
           className="w-full max-w-[500px] p-4 text-base rounded-lg border border-gray-300 my-6 mt-6 mb-4 resize-y"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault(); // デフォルトの改行動作をキャンセル
+              handleAnalyze(); // 感情分析関数を呼び出す
+            }
+          }
+          }
         ></textarea>
         <button
           id="analyze-button"
