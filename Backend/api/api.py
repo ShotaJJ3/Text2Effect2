@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import boto3
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # .envファイルから環境変数を読み込む
 load_dotenv()
@@ -20,6 +21,8 @@ comprehend = boto3.client(
 
 # Flaskアプリケーションを初期化
 app = Flask(__name__)
+#オリジンからのリクエストを許可する
+CORS(app, origins="http://localhost:5173")
 
 # '/analyze' というURLでPOSTリクエストを受け付けるAPIを定義
 @app.route('/analyze', methods=['POST'])
@@ -39,6 +42,8 @@ def analyze_sentiment_api():
         if not text_to_analyze:
             return jsonify({"error": "textキーがありません。"}), 400
 
+        text_to_analyze = str(text_to_analyze).encode('utf-8').decode('utf-8')
+    
         # AWS Comprehendで感情分析を実行
         response = comprehend.detect_sentiment(
             Text=text_to_analyze,
