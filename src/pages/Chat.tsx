@@ -15,6 +15,7 @@ import Lt2 from "../components/Lt2";
 import Rain from "../components/Rain"
 import BabyEffect from "../components/BabyEffect";
 import Snow from "../components/Snow";
+import Hamon from "../components/Hamon2";
 
 
 type AnalyzeResult = {
@@ -102,10 +103,9 @@ function Chat() {
       <SakuraEffect isActive></SakuraEffect>
       </>
 
-
     if (result.sentiment === "NEUTRAL")
       return <>
-        <NormalEffect2 isActive={true} intensity={"strong"}/>
+        <Hamon/>
       </>
 
     return null;
