@@ -38,7 +38,7 @@ const Hamon2: React.FC<CalmRippleProps> = ({
 
       setTimeout(() => {
         setRipples(prev => prev.filter(r => r.id !== newRipple.id));
-      }, 6000);
+      }, 7000); // アニメーション時間より長く設定
     };
 
     createRipple();
@@ -149,7 +149,7 @@ const Hamon2: React.FC<CalmRippleProps> = ({
                 transform: 'translate(-50%, -50%)',
                 border: '2px solid rgba(120, 180, 220, 0.9)',
                 borderRadius: '50%',
-                animation: 'calmRipple1 6s ease-out',
+                animation: 'calmRipple1 6s ease-out forwards',
                 ['--size' as any]: `${ripple.size}px`,
               }}
             />
@@ -162,7 +162,7 @@ const Hamon2: React.FC<CalmRippleProps> = ({
                 transform: 'translate(-50%, -50%)',
                 border: '1.5px solid rgba(120, 180, 220, 0.75)',
                 borderRadius: '50%',
-                animation: 'calmRipple2 6s ease-out 0.6s',
+                animation: 'calmRipple2 6s ease-out 0.6s forwards',
                 ['--size' as any]: `${ripple.size}px`,
               }}
             />
@@ -175,7 +175,7 @@ const Hamon2: React.FC<CalmRippleProps> = ({
                 transform: 'translate(-50%, -50%)',
                 border: '1px solid rgba(120, 180, 220, 0.8)',
                 borderRadius: '50%',
-                animation: 'calmRipple3 6s ease-out 1.2s',
+                animation: 'calmRipple3 6s ease-out 1.2s forwards',
                 ['--size' as any]: `${ripple.size}px`,
               }}
             />
@@ -188,7 +188,7 @@ const Hamon2: React.FC<CalmRippleProps> = ({
                 transform: 'translate(-50%, -50%)',
                 border: '1px solid rgba(120, 180, 220, 0.75)',
                 borderRadius: '50%',
-                animation: 'calmRipple4 6s ease-out 1.8s',
+                animation: 'calmRipple4 6s ease-out 1.8s forwards',
                 ['--size' as any]: `${ripple.size}px`,
               }}
             />
@@ -201,7 +201,7 @@ const Hamon2: React.FC<CalmRippleProps> = ({
                 transform: 'translate(-50%, -50%)',
                 border: '0.5px solid rgba(120, 180, 220, 0.8)',
                 borderRadius: '50%',
-                animation: 'calmRipple5 6s ease-out 2.4s',
+                animation: 'calmRipple5 6s ease-out 2.4s forwards',
                 ['--size' as any]: `${ripple.size}px`,
               }}
             />
