@@ -5,7 +5,7 @@ interface ConfettiProps {
   pieceCount?: number;
 }
 
-const Kamihubuki: React.FC<ConfettiProps> = ({ isActive = true, pieceCount = 150 }) => {
+const Kamihubuki: React.FC<ConfettiProps> = ({ isActive = true, pieceCount = 70 }) => {
   const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B500', '#FF1493'];
   
   const confettiPieces = Array.from({ length: pieceCount }, (_, i) => ({
