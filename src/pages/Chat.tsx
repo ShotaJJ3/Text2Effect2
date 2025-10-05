@@ -13,6 +13,8 @@ import SakuraEffect from "../components/SakuraEffect";
 import Kamihubuki from "../components/Kamihubuki";
 import Lt2 from "../components/Lt2";
 import Rain from "../components/Rain"
+import BabyEffect from "../components/BabyEffect";
+import Snow from "../components/Snow";
 
 
 type AnalyzeResult = {
@@ -69,9 +71,10 @@ function Chat() {
     console.log(result.sentiment);
     if (result.sentiment === "NEGATIVE" && result.scores.negative > 0.7)
       return <>
-      <AngryEffect2 isActive={true} intensity={"heavy"}/>
+      {/* <AngryEffect2 isActive={true} intensity={"heavy"}/> */}
       <Lt2/>
       <Rain/>
+      <BabyEffect isActive/>
       </>
     if (result.sentiment === "NEGATIVE")
       return <RainEffect isActive={true} intensity={"heavy"}/>;
@@ -83,10 +86,28 @@ function Chat() {
       </>
     if (result.sentiment === "POSITIVE")
       return <SakuraEffect isActive={true} intensity={"heavy"}/>;
+
+    if (result.sentiment === "MIXED" && result.scores.positive > result.scores.negative)
+      return <>
+      {/* <BabyEffect isActive></BabyEffect> */}
+      <Snow isActive></Snow>
+      <SakuraEffect isActive></SakuraEffect>
+      {/* <Rain></Rain> */}
+      {/* <Lt2></Lt2> */}
+      </>
+
+    if (result.sentiment === "MIXED" && result.scores.positive < result.scores.negative)
+      return<>
+      <Rain></Rain>
+      <SakuraEffect isActive></SakuraEffect>
+      </>
+
+
     if (result.sentiment === "NEUTRAL")
       return <>
         <NormalEffect2 isActive={true} intensity={"strong"}/>
       </>
+
     return null;
 
   }
