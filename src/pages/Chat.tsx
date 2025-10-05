@@ -1,6 +1,10 @@
-import Rain from "../components/Rain";
+//import {useState} from "react";
+
+import Kamihubuki from "../components/Kamihubuki";
+import Lt2 from "../components/Lt2";
 
 function Chat() {
+  //const[isGoodMarkActive, setIsGoodMarkActive] = useState(false);
   return (
     <div className="m-0 font-sans">
       <div
@@ -24,7 +28,7 @@ function Chat() {
         >
           感情を分析する
         </button>
-        <Rain/>
+        <Lt2/>
 
         <div id="result" className="mt-8 py-4 px-8 rounded-lg bg-white/70 shadow-md hidden"></div>
       </div>

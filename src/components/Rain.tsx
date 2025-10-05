@@ -5,12 +5,12 @@ interface RainProps {
   dropCount?: number;
 }
 
-const Rain: React.FC<RainProps> = ({ isActive = true, dropCount = 50 }) => {
+const Rain: React.FC<RainProps> = ({ isActive = true, dropCount = 100 }) => {
   const raindrops = Array.from({ length: dropCount }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     delay: Math.random() * 5,
-    duration: 1 + Math.random() * 2,
+    duration: 1 + Math.random() * 3.3,
   }));
 
   return (
