@@ -1,4 +1,16 @@
 import {useState} from "react"
+import AngryEffect2 from "../components/AngryEffect2";
+import GoodMarkEffect from "../components/GoodMarkEffect";
+import HappyEffect2 from "../components/HappyEffect2";
+import JoyfulEffect2 from "../components/JoyfulEffect2";
+import LightningEffect from "../components/LightningEffect";
+import NormalEffect2 from "../components/NormalEffect2";
+import NormalMoodEffect from "../components/NormalMoodEffect";
+import RainEffect from "../components/RainEffect";
+import RandomEmotionEffect from "../components/RandomEmotionEffect";
+import SadEffect2 from "../components/SadEffect2";
+import SakuraEffect from "../components/SakuraEffect";
+
 
 type AnalyzeResult = {
   sentiment: string;
@@ -48,8 +60,25 @@ function Chat() {
       setLoading(false);
     }
 };
+
+  const renderEffect = () =>{
+    if(!result) return null;
+    if (result.sentiment === "negative" && result.scores.negative > 0.7)
+      return <AngryEffect2 isActive={true} intensity={"heavy"}/>;
+    if (result.sentiment === "negative")
+      return <RainEffect isActive={true} intensity={"heavy"}/>;
+    if (result.sentiment === "positive" && result.scores.positive > 0.7)
+      return <HappyEffect2 isActive={true} intensity={"heavy"}/>;
+    if (result.sentiment === "positive")
+      return <SakuraEffect isActive={true} intensity={"heavy"}/>;
+    if (result.sentiment === "neutral")
+      return <NormalEffect2 isActive={true} intensity={"moderate"}/>;
+    return null;
+
+  }
   return (
     <div className="m-0 font-sans">
+      {renderEffect()}
       <div
         id="container"
         className="flex flex-col items-center justify-center min-h-screen p-8 text-center transition-colors duration-7-- ease-linear bg-[#f0f2f5] text-[#333]"
