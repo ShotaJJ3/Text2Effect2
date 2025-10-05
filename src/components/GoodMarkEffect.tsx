@@ -220,6 +220,7 @@ const GoodMarkEffect: React.FC<GoodMarkEffectProps> = ({
 
       <style jsx>{`
         @keyframes bounce {
+        
           0%,
           20%,
           50%,

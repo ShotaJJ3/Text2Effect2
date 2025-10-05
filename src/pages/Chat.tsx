@@ -10,6 +10,8 @@ import RainEffect from "../components/RainEffect";
 import RandomEmotionEffect from "../components/RandomEmotionEffect";
 import SadEffect2 from "../components/SadEffect2";
 import SakuraEffect from "../components/SakuraEffect";
+import Kamihubuki from "../components/Kamihubuki";
+import Lt2 from "../components/Lt2";
 
 
 type AnalyzeResult = {
@@ -76,6 +78,12 @@ function Chat() {
     return null;
 
   }
+//import {useState} from "react";
+
+
+
+function Chat() {
+  //const[isGoodMarkActive, setIsGoodMarkActive] = useState(false);
   return (
     <div className="m-0 font-sans">
       {renderEffect()}
@@ -124,6 +132,7 @@ function Chat() {
       </div>
     </div>
   );
+}
 }
 export default Chat;
 

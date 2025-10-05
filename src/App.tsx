@@ -68,6 +68,12 @@ function App() {
           />
         </a>
       </div>
+      <h1>Vite + React</h1>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}></button>
+
+      <h1 className="text-4xl font-bold text-gray-800 mb-8"></h1>
       <h1 className="text-4xl font-bold mb-8 text-white transition-colors duration-300">
         Vite + React + Tailwind
       </h1>
@@ -499,7 +505,7 @@ function App() {
       {/* 赤ちゃんエフェクト */}
       <BabyEffect isActive={isBabyEffectActive} intensity={sakuraIntensity} />
     </div>
-  );
-}
+    </div>
+)}
 
 export default App;
