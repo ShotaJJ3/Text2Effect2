@@ -12,6 +12,7 @@ import SadEffect2 from "../components/SadEffect2";
 import SakuraEffect from "../components/SakuraEffect";
 import Kamihubuki from "../components/Kamihubuki";
 import Lt2 from "../components/Lt2";
+import Rain from "../components/Rain"
 
 
 type AnalyzeResult = {
@@ -65,16 +66,27 @@ function Chat() {
 
   const renderEffect = () =>{
     if(!result) return null;
-    if (result.sentiment === "negative" && result.scores.negative > 0.7)
-      return <AngryEffect2 isActive={true} intensity={"heavy"}/>;
-    if (result.sentiment === "negative")
+    console.log(result.sentiment);
+    if (result.sentiment === "NEGATIVE" && result.scores.negative > 0.7)
+      return <>
+      <AngryEffect2 isActive={true} intensity={"heavy"}/>
+      <Lt2/>
+      <Rain/>
+      </>
+    if (result.sentiment === "NEGATIVE")
       return <RainEffect isActive={true} intensity={"heavy"}/>;
-    if (result.sentiment === "positive" && result.scores.positive > 0.7)
-      return <HappyEffect2 isActive={true} intensity={"heavy"}/>;
-    if (result.sentiment === "positive")
+    if (result.sentiment === "POSITIVE" && result.scores.positive > 0.7)
+      return <>
+      <Kamihubuki/>
+      <SakuraEffect isActive={true} intensity={"heavy"}/>
+
+      </>
+    if (result.sentiment === "POSITIVE")
       return <SakuraEffect isActive={true} intensity={"heavy"}/>;
-    if (result.sentiment === "neutral")
-      return <NormalEffect2 isActive={true} intensity={"moderate"}/>;
+    if (result.sentiment === "NEUTRAL")
+      return <>
+        <NormalEffect2 isActive={true} intensity={"strong"}/>
+      </>
     return null;
 
   }
@@ -82,7 +94,6 @@ function Chat() {
 
 
 
-function Chat() {
   //const[isGoodMarkActive, setIsGoodMarkActive] = useState(false);
   return (
     <div className="m-0 font-sans">
@@ -132,7 +143,6 @@ function Chat() {
       </div>
     </div>
   );
-}
 }
 export default Chat;
 
