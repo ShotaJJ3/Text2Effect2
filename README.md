@@ -3,15 +3,15 @@
 React + Python(Flask) + AWS Comprehend(感情分析AI) で作った、感情を分析し、それに応じたエフェクトがでるアプリです。
 
 ---
-# セットアップ手順
+## セットアップ手順
 
-## フロントエンド
+### フロントエンド
 1. `/Text2Effect`フォルダに移動
 2. `npm install`を実行
 
-## バックエンド
+### バックエンド
 1. `/Text2Effect`フォルダに移動
-2. `pip install python-dotenv boto3 flask flask-cor`を実行
+2. `pip install python-dotenv boto3 flask flask-cors`を実行
 
 ### .envの作り方(AWSキー)
 ```
@@ -20,13 +20,13 @@ MY_SECRET_KEY = "AWSシークレットキー"
 ```
 ---
 
-# 起動方法
+## 起動方法
 
-## フロントエンド
+### フロントエンド
 1. `/Text2Effect`フォルダに移動
 2. `npm run dev`を実行
 
-## バックエンド
+### バックエンド
 1. `/Text2Effect/Backend/api`フォルダに移動
 2. `python api.py`を実行
 
