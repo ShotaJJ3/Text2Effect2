@@ -1,7 +1,10 @@
 # Text2Effect
+
 React + Python(Flask) + AWS Comprehend(感情分析AI) で作った、感情を分析し、それに応じたエフェクトがでるアプリです。
+
 ---
 ## セットアップ
+
 ### フロントエンド
 
 ### バックエンド
@@ -10,6 +13,7 @@ React + Python(Flask) + AWS Comprehend(感情分析AI) で作った、感情を�
 ```
 MY_ACCESS_KEY = "AWSアクセスキー"
 MY_SECRET_KEY = "AWSシークレットキー"
+```
 ---
 ## 起動方法
 ### フロントエンド
